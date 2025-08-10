@@ -1,0 +1,13 @@
+name: PR Title Injection PoC
+
+on:
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  test-injection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR title (vulnerable)
+        run: |
+          echo "Processing title: ${{ github.event.pull_request.title }}"
