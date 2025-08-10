@@ -1,0 +1,19 @@
+name: Safe Shell Execution Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      user_input:
+        description: 'Input that may cause injection'
+        required: true
+        default: 'hello'
+
+jobs:
+  safe-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Safe run using quoted input
+        run: |
+          echo "Running safe command:"
+          # Input is wrapped in quotes to prevent injection
+          echo "${{ github.event.inputs.user_input }}"
